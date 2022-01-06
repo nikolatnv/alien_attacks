@@ -1,11 +1,10 @@
 import sys, pygame
 
-
 class AlienAttack:
 
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((1200, 800))
+        self.screen = pygame.display.set_mode()
         pygame.display.set_caption("Вороги напали!")
 
     def run_game(self):
@@ -13,6 +12,7 @@ class AlienAttack:
             for even in pygame.event.get():
                 if even.type == pygame.QUIT:
                     sys.exit()
+            self.screen.fill(self.bg_color)
             pygame.display.flip()
 
 
