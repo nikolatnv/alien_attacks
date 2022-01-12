@@ -4,7 +4,7 @@ from pygame.sprite import Sprite
 
 class Bullet(Sprite):
     def __init__(self, aa_game):
-        super.__init__()
+        super().__init__()
         self.screen = aa_game.screen
         self.settings = aa_game.settings
         self.collor = self.settings.bullet_color
