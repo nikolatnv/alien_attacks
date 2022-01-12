@@ -64,8 +64,7 @@ class AlienAttack:
         self.alienpug.add(alienpug)
 
     def _check_flot_edges(self):
-
-
+        pass
 
     def _create_flot(self):
         alienpug = AlienPug(self)
