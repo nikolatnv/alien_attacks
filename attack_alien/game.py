@@ -21,7 +21,6 @@ class AlienAttack:
         self.alienpug = pygame.sprite.Group()
         self._create_flot()
 
-
     def run_game(self):
         while True:
             self._check_events()
@@ -56,15 +55,18 @@ class AlienAttack:
             self.ship.moving_left = False
 
     def _create_alienpug(self, alienpug_number, row_num):
-        alienpug = AlienPug(self)
-        alienpug_width, alienpug_height = alienpug.rect.size
-        alienpug.x = alienpug_width + 2 * alienpug_width * alienpug_number
-        alienpug.rect.x = alienpug.x
-        alienpug.rect.y = alienpug.rect.height + 2 * alienpug.rect.height * row_num
-        self.alienpug.add(alienpug)
+        alien = AlienPug(self)
+        alienpug_width, alienpug_height = alien.rect.size
+        alien.x = alienpug_width + 2 * alienpug_width * alienpug_number
+        alien.rect.x = alien.x
+        alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_num
+        self.alienpug.add(alien)
 
     def _check_flot_edges(self):
-        pass
+        for alien in self.alienpug.sprites():
+            if alien.check_edge():
+                self.change_flot_direction()
+                break
 
     def _create_flot(self):
         alienpug = AlienPug(self)
@@ -87,7 +89,6 @@ class AlienAttack:
         self.alienpug.draw(self.screen)
         pygame.display.flip()
 
-
     def _fire_bullets(self):
         if len(self.bullets) < self.settings.bullet_allowed:
             new_bullets = Bullet(self)
@@ -100,7 +101,13 @@ class AlienAttack:
                 self.bullets.remove(bullet)
 
     def _update_alienpug(self):
+        self._check_flot_edges()
         self.alienpug.update()
+
+    def change_flot_direction(self):
+        for alien in self.alienpug.sprites():
+            alien.rect.y += self.settings.flot_drop_speed
+        self.settings.flot_direction *= -1
 
 
 if __name__ == '__main__':

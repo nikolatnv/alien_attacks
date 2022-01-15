@@ -9,6 +9,6 @@ class Settings():
         self.bullet_height = 15
         self.bullet_allowed = 3
         self.bullet_color = (60, 60, 60)
-        self.alienpug_speed = 1.0
-        self.flot_group_speed = 10
+        self.alienpug_speed = float(0.5)
+        self.flot_drop_speed = 10
         self.flot_direction = 1
